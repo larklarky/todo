@@ -44,9 +44,6 @@ body {
     margin: 5px 5px;
     height: 60px;
     font-size: 20px;
-    
-    
-
 }
 
 
@@ -192,4 +189,29 @@ width: 85%;
     cursor: pointer;
     border-radius: 0.25rem;
     
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*background-color: #efeddc;
+    height: 2000px;*/
+    width: 100%;
+}
+
+.login-form-group {
+    position: ;
+    flex-direction: column;
+    min-width: 600px;
+    margin-top: 45px;
+}
+
+.login-form-control {
+    display: -webkit-box;
+    margin: 5px 5px;
+    height: 60px;
+    font-size: 20px;
+    width: 80%;
+    padding: 10px;
 }

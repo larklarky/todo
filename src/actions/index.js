@@ -1,6 +1,4 @@
-import { ADD_TODO, DELETE_TODO, RECIEVE_TODOS, CHANGE_STATUS, DELETE_ALL } from '../constants';
-
-const token = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1ODU5MjQxOTl9.VHGweGClSCcwuCB2tWXWXzCYr8_n9tcKhNeZAHt6nPg'
+import { ADD_TODO, DELETE_TODO, RECIEVE_TODOS, CHANGE_STATUS, DELETE_ALL, LOGIN } from '../constants';
 
 
 export const addTodo = (todo) => {
@@ -13,12 +11,21 @@ export const addTodo = (todo) => {
 
 
 export const getTodos = () => dispatch => {
+    const token = localStorage.getItem("token")
     return fetch(
         'http://51.15.86.4:8006/API/v1/todo/',
         {headers: {'Authorization': token} }
     )
-        .then((res)=> res.json())
+        .then((res)=> {
+            console.log('response', res)
+            if(res.status === 403) {
+
+                window.location.href = '/login'
+            } 
+            return res.json()
+        })
         .then(res => dispatch(recieveTodos(res.objects)))
+        .catch((reason) =>console.log('rrrrrrrrr', reason))
 }
 
 export const recieveTodos = (todos) => {
@@ -31,6 +38,7 @@ export const recieveTodos = (todos) => {
 }
 
 export const makeTodo = (text) => dispatch => {
+    const token = localStorage.getItem("token")
     return fetch(
         'http://51.15.86.4:8006/API/v1/todos/',
         {
@@ -52,6 +60,7 @@ export const changeStatus = (todo) => {
 }
 
 export const switchStatus = (id, text, status) => dispatch => {
+    const token = localStorage.getItem("token")
     const request = fetch(
         `http://51.15.86.4:8006/API/v1/todos/${id}/`,
         {
@@ -74,6 +83,7 @@ export const deleteTodo = (id) => {
 }
 
 export const removeTodo = (id) => dispatch => {
+    const token = localStorage.getItem("token")
     return fetch (
         `http://51.15.86.4:8006/API/v1/todos/${id}/`,
         {
@@ -93,6 +103,7 @@ export const deleteAll = () => {
 }
 
 export const removeAll = (todos) => dispatch => {
+    const token = localStorage.getItem("token")
     Promise.all(todos.map(todo =>
         fetch (
             `http://51.15.86.4:8006/API/v1/todos/${todo.id}/`,
@@ -104,4 +115,27 @@ export const removeAll = (todos) => dispatch => {
         ) 
     ))
         .then(res => dispatch(deleteAll()))
+}
+
+export const login = (data) => {
+    console.log('data', data)
+    localStorage.setItem("token", 'Bearer ' + data.access_token);
+    window.location.href = '/'
+    const action = {
+        type: LOGIN,
+    }
+    return action;
+}
+
+export const getToken = (mail, password) => dispatch => {
+    console.log('getting token', JSON.stringify({mail: mail, password: password}))
+    return fetch (
+        'http://51.15.86.4:8006/API/v1/token',
+        {
+            method: 'POST',
+            body: JSON.stringify({email: mail, password: password})
+        }
+    )
+    .then(res => res.json())
+    .then(res => dispatch(login(res)))
 }
