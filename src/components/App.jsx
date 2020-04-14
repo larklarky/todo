@@ -12,9 +12,11 @@ export class App extends Component {
     render() {
         return(
             <Router>
-                <Link to='/'>Home</Link>
-                <Link to='/login'>Login</Link>
-                <Link to='/signup'>SignUp</Link>
+                <ul className="nav">
+                    <li className='title-nav'><Link to='/'>ToDo</Link></li>
+                    <li className='menu'><Link to='/login'>Login</Link></li>
+                    <li className='menu'><Link to='/signup'>SignUp</Link></li>
+                </ul>
                 <Switch>
                     <Route exact path="/">
                         <Todo />
@@ -30,3 +32,5 @@ export class App extends Component {
         )
     }
 }
+
+

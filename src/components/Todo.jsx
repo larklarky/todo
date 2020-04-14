@@ -109,7 +109,6 @@ class Todo extends Component{
         
         return (
                 <div className = 'App'>
-                    <div className = 'title'> ToDo </div>
                     <div>
                         <div className='form-group'>
                             <input 
