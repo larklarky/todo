@@ -1,4 +1,4 @@
-import { ADD_TODO, DELETE_TODO, RECIEVE_TODOS, CHANGE_STATUS, DELETE_ALL, LOGIN } from '../constants';
+import { ADD_TODO, DELETE_TODO, RECIEVE_TODOS, CHANGE_STATUS, DELETE_ALL, LOGIN, SIGNUP } from '../constants';
 
 
 export const addTodo = (todo) => {
@@ -139,3 +139,32 @@ export const getToken = (mail, password) => dispatch => {
     .then(res => res.json())
     .then(res => dispatch(login(res)))
 }
+
+export const signUp = (data) => {
+    console.log('data reg', data)
+    window.location.href = '/login'
+    const action = {
+        type: SIGNUP,
+    }
+    return action;
+}
+
+export const createToken = (user, mail, password) => dispatch => {
+    return fetch (
+        'http://51.15.86.4:8006/API/v1/users/',
+        {
+            method: 'POST',
+            body: JSON.stringify({name: user, email: mail, password: password})
+        }
+    )
+    .then((res)=> {
+        console.log('response', res)
+        if(res.status === 422) {
+
+            window.location.href = '/signup'
+        } 
+        return res.json()
+    })
+    
+    .then(res => dispatch(signUp(res)))
+} 

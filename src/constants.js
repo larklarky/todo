@@ -4,4 +4,5 @@ export const RECIEVE_TODOS = 'RECIEVE_TODOS';
 export const CHANGE_STATUS = 'CHANGE_STATUS';
 export const DELETE_ALL = 'DELETE_ALL';
 export const LOGIN = 'LOGIN';
+export const SIGNUP = 'SIGNUP'
 
