@@ -276,3 +276,14 @@ ul {
     text-decoration: none;
     color: white;
   }
+
+  .password-input p {
+      display: inline-block;
+      margin-left: 10px;
+      color: white;
+  }
+
+  .password-input {
+      position: relative;
+      margin-left: 5px;
+  }

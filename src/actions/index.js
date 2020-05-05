@@ -165,6 +165,6 @@ export const createToken = (user, mail, password) => dispatch => {
         } 
         return res.json()
     })
-    
+
     .then(res => dispatch(signUp(res)))
 } 

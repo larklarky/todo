@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {getToken} from '../actions';
 import { connect } from 'react-redux';
+import {PasswordShowHide} from './PasswordShowHide'
 
 class Login extends Component{
     constructor(props) {
@@ -38,7 +39,7 @@ class Login extends Component{
                         className='login-form-control'
                         onChange = {this.handleEmail}
                     />
-                    <input
+                    <PasswordShowHide
                         placeholder ='Password'
                         className='login-form-control'
                         onChange = {this.handlePassword}
