@@ -20,17 +20,14 @@ class Registration extends Component {
 
     handleUser(event) {
         this.setState({user: event.target.value})
-        console.log(this.state.user)
     }
 
     handleEmail(event) {
         this.setState({mail: event.target.value})
-        console.log(this.state.mail)
     }
 
     handlePassword(event) {
         this.setState({password: event.target.value})
-        console.log(this.state.password)
     }
 
     signUp() {
@@ -62,6 +59,7 @@ class Registration extends Component {
                     <PasswordShowHide
                         placeholder ='Password'
                         className='login-form-control'
+                        password={this.state.password}
                         onChange = {this.handlePassword}
                     />
                     <button

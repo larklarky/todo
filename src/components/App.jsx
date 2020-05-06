@@ -12,19 +12,35 @@ export class App extends Component {
     render() {
         return(
             <Router>
-                <ul className="nav">
-                    <li className='title-nav'><Link to='/'>ToDo</Link></li>
-                    <li className='menu'><Link to='/login'>Login</Link></li>
-                    <li className='menu'><Link to='/signup'>SignUp</Link></li>
-                </ul>
                 <Switch>
                     <Route exact path="/">
+                        <div className='navbar'>
+                            <span className='title-nav'><Link to='/'>ToDo</Link></span>
+                            <ul className="nav">
+                                <li className='menu'><Link to='/logout'>Logout</Link></li>
+                            </ul>
+                        </div>
+                        
                         <Todo />
                     </Route>
                     <Route path='/login'>
+                        <div className='navbar'>
+                            <span className='title-nav'><Link to='/'>ToDo</Link></span>
+                            <ul className="nav">
+                                <li className='menu'><Link to='/signup'>SignUp</Link></li>
+                                <li className='menu'><Link to='/login'>Login</Link></li>
+                            </ul>
+                        </div>
                         <Login />
                     </Route>
                     <Route path='/signup'>
+                        <div className='navbar'>
+                            <span className='title-nav'><Link to='/'>ToDo</Link></span>
+                            <ul className="nav">
+                                <li className='menu active'><Link to='/signup'>SignUp</Link></li>
+                                <li className='menu'><Link to='/login'>Login</Link></li>
+                            </ul>
+                        </div>
                         <Registration/>
                     </Route>
                 </Switch>

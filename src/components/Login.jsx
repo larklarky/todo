@@ -17,16 +17,14 @@ class Login extends Component{
 
     handleEmail(event) {
         this.setState({mail: event.target.value})
-        console.log(this.state.mail)
     }
 
     handlePassword(event) {
         this.setState({password: event.target.value})
-        console.log(this.state.password)
     }
 
+    
     login() {
-        console.log('login', this.props.getToken)
         this.props.getToken(this.state.mail, this.state.password)
     }
 
@@ -42,6 +40,7 @@ class Login extends Component{
                     <PasswordShowHide
                         placeholder ='Password'
                         className='login-form-control'
+                        password={this.state.password}
                         onChange = {this.handlePassword}
                     />
                     <button
