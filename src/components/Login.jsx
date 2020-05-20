@@ -49,6 +49,7 @@ class Login extends Component{
                         disabled={(this.state.mail && this.state.password !== 0) ? false : true}
                         onClick={() => this.login()}
                     >Log In</button>
+                    
                 </div>
             </div>
         )
@@ -59,6 +60,6 @@ function mapStateToProps(state) {
     return {
         todos: state
     }
-}
+} 
 
 export default connect(mapStateToProps, { getToken }) (Login);

@@ -20,7 +20,7 @@ export const getTodos = () => dispatch => {
             console.log('response', res)
             if(res.status === 403) {
 
-                window.location.href = '/login'
+                window.location.href = '#/login'
             } 
             return res.json()
         })
@@ -120,7 +120,7 @@ export const removeAll = (todos) => dispatch => {
 export const login = (data) => {
     console.log('data', data)
     localStorage.setItem("token", 'Bearer ' + data.access_token);
-    window.location.href = '/'
+    window.location.href = '#/'
     const action = {
         type: LOGIN,
     }
@@ -142,7 +142,7 @@ export const getToken = (mail, password) => dispatch => {
 
 export const signUp = (data) => {
     console.log('data reg', data)
-    window.location.href = '/login'
+    window.location.href = '#/login'
     const action = {
         type: SIGNUP,
     }
@@ -161,7 +161,7 @@ export const createToken = (user, mail, password) => dispatch => {
         console.log('response', res)
         if(res.status === 422) {
 
-            window.location.href = '/signup'
+            window.location.href = '#/signup'
         } 
         return res.json()
     })
